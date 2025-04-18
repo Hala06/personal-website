@@ -5,7 +5,7 @@ import About from './components/About.jsx';
 import Timeline from './components/Timeline.jsx';
 import Projects from './components/Projects.jsx';
 import Skills from './components/Skills.jsx';
-import Dazai from './components/Dazai.jsx';
+import Lotus from './components/Lotus.jsx';
 import Contact from './components/Contact.jsx';
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
         <Timeline />
         <Projects />
         <Skills />
-        <Dazai />
+        <Lotus />
         <Contact />
       </main>
     </div>
