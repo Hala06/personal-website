@@ -4,15 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hala Alshareef - Personal Website</title>
+    
     <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" 
       rel="stylesheet"
+    >
+    
+    <!-- Font Awesome -->
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
+
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Hala Alshareef - Computer Security student at York University. Portfolio showcasing my projects, skills, and experience in development and cybersecurity.">
+    <meta name="keywords" content="Hala Alshareef, Computer Security, Web Development, York University, Portfolio, React Developer">
+    <meta name="author" content="Hala Alshareef">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a192f">
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Prevent Flash of Unstyled Content -->
+    <style>
+      .no-fouc {
+        visibility: hidden;
+      }
+      body {
+        background-color: #0a192f;
+      }
+    </style>
+    <script>
+      document.documentElement.classList.add('no-fouc');
+      window.addEventListener('load', function() {
+        document.documentElement.classList.remove('no-fouc');
+      });
+    </script>
   </body>
 </html>
-

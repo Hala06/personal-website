@@ -8,18 +8,17 @@ function Model() {
   React.useEffect(() => {
     scene.traverse((child) => {
       if (child.isMesh) {
-        // Create a modern wireframe effect
         child.material.wireframe = true;
         child.material.transparent = true;
-        child.material.opacity = 0.8;
-        child.material.color.set('#00ffff'); // Cyan color for modern look
-        child.material.emissive.set('#003333'); // Subtle glow
-        child.material.emissiveIntensity = 0.5;
+        child.material.opacity = 0.9;
+        child.material.color.set('#40e0ff');
+        child.material.emissive.set('#004444');
+        child.material.emissiveIntensity = 1.2;
       }
     });
   }, [scene]);
   
-  return <primitive object={scene} scale={[1.5, 1.5, 1.5]} position={[0, 0, 0]} rotation={[0, Math.PI / 4, 0]} />;
+  return <primitive object={scene} scale={[1.8, 1.8, 1.8]} position={[0, 0, 0]} rotation={[0, Math.PI / 4, 0]} />;
 }
 
 const Attribution = () => (
@@ -28,7 +27,8 @@ const Attribution = () => (
     bottom: '10px',
     right: '10px',
     color: '#ffffff80',
-    fontSize: '12px'
+    fontSize: '12px',
+    textShadow: '0 0 10px rgba(64, 224, 255, 0.5)'
   }}>
     <a href="https://www.meshy.ai/workspace" 
        target="_blank" 
@@ -63,51 +63,66 @@ class ErrorBoundary extends Component {
 
 const Lotus = () => {
   return (
-    <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
-      <ErrorBoundary>
-        <Canvas camera={{ position: [3, 2, 3], fov: 60 }}>
-          <color attach="background" args={['#000000']} />
-          <ambientLight intensity={0.5} />
-          <spotLight 
-            position={[5, 5, 5]} 
-            angle={0.3} 
-            penumbra={1} 
-            intensity={2} 
-            castShadow
-            color="#00ffff"
-          />
-          <spotLight 
-            position={[-5, -5, -5]} 
-            angle={0.3} 
-            penumbra={1} 
-            intensity={1} 
-            castShadow
-            color="#ff00ff"
-          />
-          <Suspense fallback={<mesh><boxGeometry /></mesh>}>
-            <Model />
-            <Environment preset="sunset" />
-            <Stars 
-              radius={100} 
-              depth={50} 
-              count={5000} 
-              factor={4} 
-              saturation={0}
+    <div style={{ 
+      width: '100%', 
+      height: '90vh', 
+      position: 'relative',
+      margin: '5vh auto',
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
+      <div style={{
+        width: '60%',
+        height: '100%',
+        position: 'relative'
+      }}>
+        <ErrorBoundary>
+          <Canvas camera={{ position: [3, 2, 3], fov: 75 }} dpr={[1, 2]}>
+            <color attach="background" args={['#000000']} />
+            <ambientLight intensity={0.7} />
+            <spotLight 
+              position={[5, 5, 5]} 
+              angle={0.3} 
+              penumbra={1} 
+              intensity={2.5} 
+              castShadow
+              color="#40e0ff"
             />
-          </Suspense>
-          <OrbitControls 
-            enableZoom={true}
-            enablePan={true}
-            minDistance={2}
-            maxDistance={15}
-            autoRotate
-            autoRotateSpeed={0.2}
-            enableDamping={true}
-            dampingFactor={0.05}
-          />
-        </Canvas>
-      </ErrorBoundary>
-      <Attribution />
+            <spotLight 
+              position={[-5, -5, -5]} 
+              angle={0.3} 
+              penumbra={1} 
+              intensity={1.5} 
+              castShadow
+              color="#ff40ff"
+            />
+            <Suspense fallback={<mesh><boxGeometry /></mesh>}>
+              <Model />
+              <Environment preset="night" />
+              <Stars 
+                radius={300} 
+                depth={100} 
+                count={10000} 
+                factor={6} 
+                saturation={0.5}
+                speed={1.5}
+                fade={true}
+              />
+            </Suspense>
+            <OrbitControls 
+              enableZoom={true}
+              enablePan={true}
+              minDistance={2.5}
+              maxDistance={12}
+              autoRotate
+              autoRotateSpeed={0.5}
+              enableDamping={true}
+              dampingFactor={0.05}
+            />
+          </Canvas>
+        </ErrorBoundary>
+        <Attribution />
+      </div>
     </div>
   );
 };

@@ -1,45 +1,75 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Timeline from './components/Timeline.jsx';
 import Projects from './components/Projects.jsx';
 import Skills from './components/Skills.jsx';
-import Lotus from './components/Lotus.jsx';
 import Contact from './components/Contact.jsx';
+import LoadingScreen from './components/LoadingScreen.jsx';
+import './styles/sections.css';
+import './App.css';
 
 export default function App() {
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentSection, setCurrentSection] = useState('hero');
 
   useEffect(() => {
-    const handleMouseMove = (e) => setCursorPos({ x: e.clientX, y: e.clientY });
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle section changes
+  useEffect(() => {
+    const observerOptions = {
+      rootMargin: '-50% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setCurrentSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const sections = document.querySelectorAll('section[id]');
+    
+    sections.forEach(section => observer.observe(section));
+    return () => sections.forEach(section => observer.unobserve(section));
   }, []);
 
   return (
     <div className="portfolio">
-      {/* Starry Background */}
-      <div className="stars"></div>
-      <div className="stars2"></div>
-      <div className="stars3"></div>
+      <AnimatePresence mode="wait">
+        {isLoading && <LoadingScreen />}
+      </AnimatePresence>
 
-      {/* Custom Cursor */}
-      <div className="cursor" style={{ left: cursorPos.x, top: cursorPos.y }} />
+      <Header currentSection={currentSection} />
 
-      {/* Fixed Navigation Header */}
-      <Header />
-
-      {/* Main Content */}
-      <main>
+      <motion.main 
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: isLoading ? 0 : 1,
+          y: isLoading ? 20 : 0
+        }}
+        transition={{ 
+          duration: 0.8,
+          ease: "easeOut"
+        }}
+      >
         <Hero />
         <About />
         <Timeline />
         <Projects />
         <Skills />
-        <Lotus />
         <Contact />
-      </main>
+      </motion.main>
     </div>
   );
 }
