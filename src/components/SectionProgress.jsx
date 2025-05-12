@@ -13,7 +13,7 @@ export default function SectionProgress() {
   });
 
   useEffect(() => {
-    return scrollY.onChange((latest) => {
+    const callback = (latest) => {
       // Find current section
       const sections = document.querySelectorAll('section');
       let current = null;
@@ -35,7 +35,10 @@ export default function SectionProgress() {
       setActiveSection(current);
       setSectionProgress(progress);
       scaleX.set(progress);
-    });
+    };
+
+    scrollY.on("change", callback);
+    return () => scrollY.clearListeners && scrollY.clearListeners();
   }, [scrollY, scaleX]);
 
   return (

@@ -47,7 +47,7 @@ export default function App() {
   return (
     <div className="portfolio">
       <AnimatePresence mode="wait">
-        {isLoading && <LoadingScreen />}
+        {isLoading && <LoadingScreen progress={100} />}
       </AnimatePresence>
 
       <Header currentSection={currentSection} />

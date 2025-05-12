@@ -44,7 +44,6 @@ export default function LoadingScreen({ progress }) {
           </div>
           <motion.span 
             className="loading-percentage"
-            key={progress}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
