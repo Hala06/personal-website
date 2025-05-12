@@ -1,14 +1,14 @@
 {
   "name": "Personal Website",
   "short_name": "Website",
-  "start_url": ".",
+  "start_url": "/personal-website/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#22223b",
   "description": "Portfolio and personal website.",
   "icons": [
     {
-      "src": "vite.svg",
+      "src": "/personal-website/vite.svg",
       "sizes": "192x192",
       "type": "image/svg+xml"
     }
