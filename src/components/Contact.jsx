@@ -25,15 +25,15 @@ export default function Contact() {
             Whether you have a question or just want to say hi, feel free to reach out!
           </p>
           <div className="contact-links">
-            <a href="mailto:your.email@example.com">
+            <a href="mailto:Alshareefhala10@gmail.com">
               <i className="far fa-envelope"></i>
-              your.email@example.com
+              Alshareefhala10@gmail.com
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+            <a href="www.linkedin.com/in/006hala-alshareef" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin"></i>
-              LinkedIn
+              www.linkedin.com/in/006hala-alshareef
             </a>
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Hala06" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-github"></i>
               GitHub
             </a>
